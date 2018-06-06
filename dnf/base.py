@@ -1254,7 +1254,7 @@ class Base(object):
                     key = (pkg.name, pkg.arch)
                     if (pkg.name, pkg.arch, str(pkg.epoch), pkg.version, pkg.release) in dinst:
                         reinstall_available.append(pkg)
-                    elif key not in ndinst or pkg.evr_gt(ndinst[key]):
+                    elif key not in ndinst or pkg.evr_cmp(ndinst[key]) > 0:
                         available.append(pkg)
                     else:
                         old_available.append(pkg)
@@ -1293,9 +1293,9 @@ class Base(object):
                 for (name, arch) in available_dict:
                     avail_pkg = available_dict[(name, arch)][0]
                     inst_pkg = installed_dict.get((name, arch), [None])[0]
-                    if not inst_pkg or avail_pkg.evr_gt(inst_pkg):
+                    if not inst_pkg or avail_pkg.evr_cmp(inst_pkg) > 0:
                         available.append(avail_pkg)
-                    elif avail_pkg.evr_eq(inst_pkg):
+                    elif avail_pkg.evr_cmp(inst_pkg) == 0:
                         reinstall_available.append(avail_pkg)
                     else:
                         old_available.append(avail_pkg)

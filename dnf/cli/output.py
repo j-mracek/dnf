@@ -626,9 +626,9 @@ class Output(object):
                     highlight = False
                     if key not in highlight_na:
                         highlight = highlight_modes.get('not in', 'normal')
-                    elif pkg.evr_eq(highlight_na[key]):
+                    elif pkg.evr_cmp(highlight_na[key]) == 0:
                         highlight = highlight_modes.get('=', 'normal')
-                    elif pkg.evr_lt(highlight_na[key]):
+                    elif pkg.evr_cmp(highlight_na[key]) < 0:
                         highlight = highlight_modes.get('>', 'bold')
                     else:
                         highlight = highlight_modes.get('<', 'normal')

@@ -153,42 +153,6 @@ class Package(hawkey.Package):
     def repo(self, val):
         self._repo = val
 
-    @property # yum compatibility attribute
-    def relativepath(self):
-        return self.location
-
-    @property # yum compatibility attribute
-    def a(self):
-        return self.arch
-
-    @property # yum compatibility attribute
-    def e(self):
-        return self.epoch
-
-    @property # yum compatibility attribute
-    def v(self):
-        return self.version
-
-    @property # yum compatibility attribute
-    def r(self):
-        return self.release
-
-    # yum compatibility method
-    def evr_eq(self, pkg):
-        return self.evr_cmp(pkg) == 0
-
-    # yum compatibility method
-    def evr_gt(self, pkg):
-        return self.evr_cmp(pkg) > 0
-
-    # yum compatibility method
-    def evr_lt(self, pkg):
-        return self.evr_cmp(pkg) < 0
-
-    # yum compatibility method
-    def getDiscNum(self):
-        return self.medianr
-
     # yum compatibility method
     def localPkg(self):
         """ Package's location in the filesystem.

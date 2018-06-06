@@ -189,9 +189,7 @@ class OutputTest(tests.support.DnfBaseTestCase):
         pkg._from_system = False
         pkg._size = 0
         pkg._pkgid = None
-        pkg.e = pkg.epoch = 1
-        pkg.v = pkg.version
-        pkg.r = pkg.release
+        pkg.epoch = 1
         pkg.sourcerpm = 'tour.src.rpm'
         pkg.summary = 'A summary of the package.'
         pkg.url = 'http://example.com'
