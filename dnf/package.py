@@ -173,10 +173,6 @@ class Package(hawkey.Package):
     def r(self):
         return self.release
 
-    @property # yum compatibility attribute
-    def ui_from_repo(self):
-        return self.reponame
-
     # yum compatibility method
     def evr_eq(self, pkg):
         return self.evr_cmp(pkg) == 0

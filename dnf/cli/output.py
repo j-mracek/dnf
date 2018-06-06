@@ -417,7 +417,7 @@ class Output(object):
             columns = (-63, -16) # Old default
         envra = '%s%s' % (indent, ucd(pkg))
         hi_cols = [highlight, 'normal', 'normal']
-        rid = pkg.ui_from_repo
+        rid = pkg.reponame
         columns = zip((envra, rid), columns, hi_cols)
         print(self.fmtColumns(columns))
 
@@ -854,7 +854,7 @@ class Output(object):
         if not verbose:
             return
 
-        print(_("Repo        : %s") % po.ui_from_repo)
+        print(_("Repo        : %s") % po.reponame)
         printed_match = False
         name_match = False
         for item in set(values):
