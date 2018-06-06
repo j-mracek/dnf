@@ -74,9 +74,6 @@ class PackageTest(tests.support.DnfBaseTestCase):
         pkg = self.sack.query().installed().filter(name="pepper")[0]
         self.assertEqual(type(pkg.idx), int)
 
-    def test_pkgtup(self):
-        self.assertEqual(self.pkg.pkgtup, ('pepper', 'x86_64', '0', '20', '0'))
-
     @mock.patch("dnf.package.Package.location", 'f/foo.rpm')
     def test_localPkg(self):
         self.pkg.repo.basecachedir = '/cachedir'

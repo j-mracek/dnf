@@ -360,8 +360,6 @@ class MockPackage(object):
         self.release = nevra.release
         self.arch = nevra.arch
         self.evr = '%(epoch)d:%(version)s-%(release)s' % vars(self)
-        self.pkgtup = (self.name, self.arch, str(self.epoch), self.version,
-                       self.release)
 
     def __str__(self):
         return self.str

@@ -1042,7 +1042,7 @@ class Output(object):
         a_wid = 0 # Arch can't get "that big" ... so always use the max.
 
         def _add_line(lines, data, a_wid, po, obsoletes=[]):
-            (n, a, e, v, r) = po.pkgtup
+            (n, a, e, v, r) = (po.name, po.arch, str(po.epoch), po.version, po.release)
             evr = po.evr
             repoid = po._from_repo
             size = format_number(po._size)
@@ -1930,7 +1930,7 @@ class DepSolveProgressCallBack(dnf.callback.Depsolve):
         """Print information about a package being added to the
         transaction set.
 
-        :param pkgtup: tuple containing the package name, arch,
+        :param pkg: tuple containing the package name, arch,
            version, and repository
         :param mode: a short string indicating why the package is
            being added to the transaction set.

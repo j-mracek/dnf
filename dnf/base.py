@@ -1233,7 +1233,7 @@ class Base(object):
             dinst = {}
             ndinst = {}  # Newest versions by name.arch
             for po in q.installed():
-                dinst[po.pkgtup] = po
+                dinst[(po.name, po.arch, str(po.epoch), po.version, po.release)] = po
                 if showdups:
                     continue
                 key = (po.name, po.arch)
@@ -1246,13 +1246,13 @@ class Base(object):
                 avail = avail.latest()
             for pkg in avail:
                 if showdups:
-                    if pkg.pkgtup in dinst:
+                    if (pkg.name, pkg.arch, str(pkg.epoch), pkg.version, pkg.release) in dinst:
                         reinstall_available.append(pkg)
                     else:
                         available.append(pkg)
                 else:
                     key = (pkg.name, pkg.arch)
-                    if pkg.pkgtup in dinst:
+                    if (pkg.name, pkg.arch, str(pkg.epoch), pkg.version, pkg.release) in dinst:
                         reinstall_available.append(pkg)
                     elif key not in ndinst or pkg.evr_gt(ndinst[key]):
                         available.append(pkg)
