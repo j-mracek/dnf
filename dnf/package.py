@@ -144,10 +144,6 @@ class Package(hawkey.Package):
         return int(self.rpmdbid)
 
     @property # yum compatibility attribute
-    def repoid(self):
-        return self.reponame
-
-    @property # yum compatibility attribute
     def pkgtup(self):
         return (self.name, self.arch, str(self.e), self.v, self.r)
 
@@ -247,7 +243,7 @@ class Package(hawkey.Package):
                 return schemes_filter([self.repo.baseurl])
 
     def _is_local_pkg(self):
-        if self.repoid == "@System":
+        if self.reponame == "@System":
             return True
         return self._from_cmdline or \
             (self.repo._local and (not self.baseurl or self.baseurl.startswith('file://')))

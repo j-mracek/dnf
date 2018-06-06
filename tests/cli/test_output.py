@@ -189,7 +189,6 @@ class OutputTest(tests.support.DnfBaseTestCase):
         pkg._from_system = False
         pkg._size = 0
         pkg._pkgid = None
-        pkg.repoid = None
         pkg.e = pkg.epoch = 1
         pkg.v = pkg.version
         pkg.r = pkg.release

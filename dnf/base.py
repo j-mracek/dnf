@@ -1093,7 +1093,7 @@ class Base(object):
             check = self.conf.localpkg_gpgcheck
             hasgpgkey = 0
         else:
-            repo = self.repos[po.repoid]
+            repo = self.repos[po.reponame]
             check = repo.gpgcheck
             hasgpgkey = not not repo.gpgkey
 
@@ -2033,7 +2033,7 @@ class Base(object):
         :raises: :class:`dnf.exceptions.Error` if there are errors
            retrieving the keys
         """
-        repo = self.repos[po.repoid]
+        repo = self.repos[po.reponame]
         key_installed = repo.id in self._repo_set_imported_gpg_keys
         keyurls = [] if key_installed else repo.gpgkey
 

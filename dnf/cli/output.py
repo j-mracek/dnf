@@ -500,7 +500,7 @@ class Output(object):
         output_list.append(format_key_val(_("Arch"), pkg.arch))
         output_list.append(format_key_val(_("Size"), format_number(float(pkg._size))))
         output_list.append(format_key_val(_("Source"), pkg.sourcerpm))
-        output_list.append(format_key_val(_("Repo"), pkg.repoid))
+        output_list.append(format_key_val(_("Repo"), pkg.reponame))
         if pkg_data and pkg_data.from_repo:
             output_list.append(format_key_val(_("From repo"), pkg_data.from_repo))
         if self.conf.verbose:
@@ -567,7 +567,7 @@ class Output(object):
         # Old style
         c_compact = changePkg.compactPrint()
         i_compact = '%s.%s' % (instPkg.name, instPkg.arch)
-        c_repo = changePkg.repoid
+        c_repo = changePkg.reponame
         print('%-35.35s [%.12s] %.10s %-20.20s' %
               (c_compact, c_repo, changetype, i_compact))
 

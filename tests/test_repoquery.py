@@ -145,5 +145,5 @@ class Rpm2PyFormatTest(tests.support.TestCase):
         fmt = dnf.cli.commands.repoquery.rpm2py_format('%-40{name}')
         self.assertEqual(fmt, '{0.name:>40}')
         fmt = dnf.cli.commands.repoquery.rpm2py_format(
-            '%{name}-%{repoid} :: %-40{arch}')
-        self.assertEqual(fmt, '{0.name}-{0.repoid} :: {0.arch:>40}')
+            '%{name}-%{reponame} :: %-40{arch}')
+        self.assertEqual(fmt, '{0.name}-{0.reponame} :: {0.arch:>40}')
