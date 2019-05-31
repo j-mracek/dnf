@@ -139,6 +139,13 @@ Conflicts:      python3-dnf-plugins-core < %{conflicts_dnf_plugins_core_version}
 Conflicts:      python2-dnf-plugins-extras < %{conflicts_dnf_plugins_extras_version}
 Conflicts:      python3-dnf-plugins-extras < %{conflicts_dnf_plugins_extras_version}
 
+%if %{without python2}
+# Obsoleted from here so we can track the fast growing version easily.
+# We intentionally only obsolete and not provide, this a broken upgrade
+# prevention, not providing the removed functionality.
+Obsoletes:      python2-%{name} < %{version}-%{release}
+%endif
+
 %description
 %{pkg_description}
 
