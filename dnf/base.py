@@ -112,6 +112,7 @@ class Base(object):
         self._trans_install_set = False
         self._tempfile_persistor = None
         self._update_security_filters = []
+        self._update_security_cmp_type = "eq"
         self._allow_erasing = False
         self._repo_set_imported_gpg_keys = set()
         self.output = None
@@ -2315,6 +2316,14 @@ class Base(object):
                     msg2 = _('No security updates needed for "{}", but {} '
                              'updates available').format(pkg_spec, count)
                     logger.warning(P_(msg1, msg2, count))
+            return merged_queries
+        if self._update_security_cmp_type != 'eq':
+            #  Add available packages that
+            nevras = [str(pkg) for pkg in merged_queries]
+            key = {'nevra_strict__' + self._update_security_cmp_type: nevras}
+            merged_queries = q.filter(**key)
+            pass
+
         return merged_queries
 
     def _get_key_for_package(self, po, askcb=None, fullaskcb=None):

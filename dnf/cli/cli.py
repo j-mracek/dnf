@@ -962,30 +962,31 @@ class Cli(object):
             return
         filters = []
         if opts.bugfix or all:
-            key = {'advisory_type__' + cmp_type: 'bugfix'}
+            key = {'advisory_type': 'bugfix'}
             filters.append(query.filter(**key))
         if opts.enhancement or all:
-            key = {'advisory_type__' + cmp_type: 'enhancement'}
+            key = {'advisory_type': 'enhancement'}
             filters.append(query.filter(**key))
         if opts.newpackage or all:
-            key = {'advisory_type__' + cmp_type: 'newpackage'}
+            key = {'advisory_type': 'newpackage'}
             filters.append(query.filter(**key))
         if opts.security or all:
-            key = {'advisory_type__' + cmp_type: 'security'}
+            key = {'advisory_type': 'security'}
             filters.append(query.filter(**key))
         if opts.advisory:
-            key = {'advisory__' + cmp_type: opts.advisory}
+            key = {'advisory': opts.advisory}
             filters.append(query.filter(**key))
         if opts.bugzilla:
-            key = {'advisory_bug__' + cmp_type: opts.bugzilla}
+            key = {'advisory_bug': opts.bugzilla}
             filters.append(query.filter(**key))
         if opts.cves:
-            key = {'advisory_cve__' + cmp_type: opts.cves}
+            key = {'advisory_cve': opts.cves}
             filters.append(query.filter(**key))
         if opts.severity:
-            key = {'advisory_severity__' + cmp_type: opts.severity}
+            key = {'advisory_severity': opts.severity}
             filters.append(query.filter(**key))
         self.base._update_security_filters = filters
+        self.base._update_security_cmp_type = cmp_type
 
     def redirect_logger(self, stdout=None, stderr=None):
         # :api
