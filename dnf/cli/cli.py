@@ -954,7 +954,7 @@ class Cli(object):
 
         :param opts:
         :param query: base package set for filters
-        :param cmp_type: string like "eq", "gt", "gte", "lt", "lte"
+        :param cmp_type: string supported "eq", "gte"
         :param all:
         :return:
         """
@@ -986,7 +986,14 @@ class Cli(object):
             key = {'advisory_severity': opts.severity}
             filters.append(query.filter(**key))
         self.base._update_security_filters = filters
-        self.base._update_security_cmp_type = cmp_type
+        if cmp_type == 'eq':
+            extended = False
+        elif cmp_type == 'gte':
+            extended = False
+        else:
+            raise ValueError(
+                "Unsupported value of cmp_type argument, only 'eq', 'gte' are supported")
+        self.base._update_security_extended = extended
 
     def redirect_logger(self, stdout=None, stderr=None):
         # :api
